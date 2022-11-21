@@ -54,7 +54,7 @@ const createCart = async function (req, res) {
                 quantity: 1
             }
 
-            // ------------------COMPARE THE PRODUCTID IF NOT PRESENT IT WILL CREATE ONE IF PRESENT IT WILL UPDATE THE QUANTITY------------------
+            //! ------------------COMPARE THE PRODUCTID IF NOT PRESENT IT WILL CREATE ONE IF PRESENT IT WILL UPDATE THE QUANTITY------------------
             let compareProductId = arr2.findIndex((obj) => obj.productId == productId);
             if (compareProductId == -1) {
                 arr2.push(productAdded)
@@ -65,7 +65,7 @@ const createCart = async function (req, res) {
             let priceUpdated = cartData.totalPrice + (productIdNew.price * products.quantity)
             let itemsUpdated = arr2.length
 
-            // -------------------------------CREATE THE UPDATED CART------------------
+            //! -------------------------------CREATE THE UPDATED CART------------------
             let createCartNew = {
                 items: arr2,
                 totalPrice: priceUpdated, totalItems: itemsUpdated
@@ -191,7 +191,7 @@ const getCart = async (req, res) => {
 }
 
 //--------------------------------delete cart----------------------------
-const deleteCart = async (req, res, next) => {
+const deleteCart = async (req, res) => {
     try {
         let userId = req.params.userId;
 
@@ -209,7 +209,7 @@ const deleteCart = async (req, res, next) => {
         )
 
         res.status(204).send({ status: true, message: "Success" })
-        next();
+        
     } catch (err) {
         res.status(500).send({ status: false, error: err.message })
     }

@@ -55,7 +55,7 @@ const createUser = async function (req, res) {
         let checkEmail = await userModel.findOne({ email: data.email })
         if (checkEmail) return res.status(400).send({ status: false, message: " Email is already exists" })
 
-        //---------------------Profile Images check for aws------------------
+        //!---------------------Profile Images check for aws------------------
         let profileImage = req.files
         if (!(profileImage && profileImage.length)) { return res.status(400).send({ status: false, message: " Please Provide The Profile Image" }) }
         const uploadedProfileImage = await uploadFile(profileImage[0])
